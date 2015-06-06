@@ -13,6 +13,7 @@ require 'gosu'
 # * +velocity_x+ - x axis speed
 # * +velocity_y+ - y axis speed
 # * +visible+ - Defines if the image is visible
+# * +hit+ - Keep track of the hits
 class WhackARuby < Gosu::Window
   def initialize
     super 800,600,false
@@ -26,6 +27,17 @@ class WhackARuby < Gosu::Window
     @velocity_y = 5
     @visible = 0
     @hammer_image = Gosu::Image.new(self, './resources/hammer.png', false)
+    @hit = 0
+  end
+
+  def button_down(id)
+    if (id == Gosu::MsLeft)
+      if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
+        @hit = 1
+      else
+        @hit = 0
+      end
+    end
   end
 
   def update
