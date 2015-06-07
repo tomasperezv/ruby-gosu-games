@@ -16,16 +16,16 @@ require 'gosu'
 # * +visible+ - Defines if the image is visible
 # * +hit+ - Keep track of the hits
 class WhackARuby < Gosu::Window
-  
+
   ##
   # @return [void]
   def initialize
     super 800,600,false
     self.caption = "Whack the Ruby!"
-    
+
     @image = Gosu::Image.new(self, './resources/ruby.png', false)
     @hammer_image = Gosu::Image.new(self, './resources/hammer.png', false)
-    
+
     @x = 200
     @y = 200
     @width = 50
@@ -53,7 +53,7 @@ class WhackARuby < Gosu::Window
   # This method is called once very {#update_interval} milliseconds while the window is
   # being shown. Contains the application main's logic.
   #
-  # @return [void]  
+  # @return [void]
   def update
     @visible -= 1
     if @visible < -10 and rand < 0.01
