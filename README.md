@@ -9,6 +9,7 @@ sudo apt-get install build-essential libsdl2-dev libsdl2-ttf-dev libpango1.0-dev
 libgl1-mesa-dev libfreeimage-dev libopenal-dev libsndfile-dev
 sudo apt-get install ruby-dev
 sudo gem install gosu
+sudo gem install mocha
 ```
 
 ## Reference
