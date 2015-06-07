@@ -1,5 +1,3 @@
-require 'gosu'
-
 ##
 # Author:: Tomas Perez (mailto:tom@0x101.com)
 # This class represents the "WhackARuby" window that

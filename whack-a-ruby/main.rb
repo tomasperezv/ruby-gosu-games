@@ -1,4 +1,5 @@
 #!/usr/bin/ruby -w
-require './whack_a_ruby.rb'
+require "gosu"
+require "./whack_a_ruby.rb"
 window = WhackARuby.new
 window.show
