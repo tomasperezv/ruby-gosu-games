@@ -13,6 +13,8 @@ sudo gem install gosu
 
 ## Reference
 
+[RDoc reference for Gosu](https://www.libgosu.org/rdoc/)
+
 [Learn Game Programming with Ruby](https://pragprog.com/book/msgpkids/learn-game-programming-with-ruby)
 
 [Set up Gosu in Linux](https://github.com/jlnr/gosu/wiki/Getting-Started-on-Linux)
