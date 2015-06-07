@@ -1,4 +1,3 @@
-#!/usr/bin/ruby -w
 require 'gosu'
 
 ##
@@ -90,5 +89,4 @@ class WhackARuby < Gosu::Window
 
 end
 
-window = WhackARuby.new
-window.show
+
