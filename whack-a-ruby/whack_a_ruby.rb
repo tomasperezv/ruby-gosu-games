@@ -20,15 +20,15 @@ class WhackARuby < Gosu::Window
     super 800,600,false
     self.caption = "Whack the Ruby!"
 
-    @image = Gosu::Image.new(self, './resources/ruby.png', false)
     @hammer_image = Gosu::Image.new(self, './resources/hammer.png', false)
+    @image = Gosu::Image.new(self, './resources/arrabal.png', false)
 
     @x = 200
     @y = 200
     @width = 50
     @height = 43
-    @velocity_x = 5
-    @velocity_y = 5
+    @velocity_x = 2
+    @velocity_y = 2
     @visible = 0
     @hit = 0
   end
@@ -41,7 +41,7 @@ class WhackARuby < Gosu::Window
       if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
         @hit = 1
       else
-        @hit = 0
+        @hit = -1
       end
     end
   end
@@ -54,7 +54,7 @@ class WhackARuby < Gosu::Window
   def update
     @visible -= 1
     if @visible < -10 and rand < 0.01
-      @visible = 30
+      @visible = 300
     end
 
     @x += @velocity_x
@@ -82,6 +82,17 @@ class WhackARuby < Gosu::Window
     if @visible > 0
       @image.draw(@x-@width/2, @y-@height/2, 1)
     end
+
+    if @hit == 0
+      c = Gosu::Color::NONE
+    elsif @hit == 1
+      c = Gosu::Color::GREEN
+    elsif @hit == -1
+      c = Gosu::Color::RED
+    end
+    @hit = 0
+
+    draw_quad(0, 0, c, 800, 0, c, 800, 600, c, 0, 600, c)
 
   end
 
