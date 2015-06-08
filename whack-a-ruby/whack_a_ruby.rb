@@ -31,6 +31,10 @@ class WhackARuby < Gosu::Window
     @velocity_y = 2
     @visible = 0
     @hit = 0
+
+    @font = Gosu::Font.new(self, "system", 30)
+    @score = 0
+
   end
 
   ##
@@ -40,8 +44,10 @@ class WhackARuby < Gosu::Window
     if (id == Gosu::MsLeft)
       if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
         @hit = 1
+        @score += 5
       else
         @hit = -1
+        @score -= 1
       end
     end
   end
@@ -93,6 +99,7 @@ class WhackARuby < Gosu::Window
     @hit = 0
 
     draw_quad(0, 0, c, 800, 0, c, 800, 600, c, 0, 600, c)
+    @font.draw(@score.to_s, 700, 20, 2)
 
   end
 
