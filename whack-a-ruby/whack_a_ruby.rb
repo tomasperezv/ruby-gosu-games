@@ -21,8 +21,11 @@ class WhackARuby < Gosu::Window
     super 800,600,false
     self.caption = "Whack the Ruby!"
 
+    @init = true
+
     @hammer_image = Gosu::Image.new(self, './resources/hammer.png', false)
     @image = Gosu::Image.new(self, './resources/arrabal.png', false)
+    @background = Gosu::Image.new(self, './resources/background.jpg', true)
 
     @x = 200
     @y = 200
@@ -69,11 +72,11 @@ class WhackARuby < Gosu::Window
         @visible = 300
       end
 
-      if @x + @width/2 > 800 or @x - @width/2 < 0
+      if @x + @width > 800 or @x - @width < 0
         @velocity_x *= -1
       end
 
-      if @y + @height/2 > 600 or @y - @height/2 < 0
+      if @y + @height > 600 or @y - @height < 0
         @velocity_y *= -1
       end
 
@@ -92,6 +95,10 @@ class WhackARuby < Gosu::Window
   #
   # @return [void]
   def draw
+
+    if @init
+      @background.draw(0, 0, -1, 2.5, 2.5)
+    end
 
     if not @playing
       @font.draw("Game Over", 300, 300, 3)
