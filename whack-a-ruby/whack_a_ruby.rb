@@ -98,7 +98,7 @@ class WhackARuby < Gosu::Window
       @visible = 20
     end
 
-    @hammer_image.draw(mouse_x-40, mouse_y-10, 1)
+    @hammer_image.draw(mouse_x-40, mouse_y-10, 2)
 
     if @visible > 0
       @image.draw(@x-@width/2, @y-@height/2, 1)
