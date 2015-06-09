@@ -12,6 +12,7 @@
 # * +velocity_y+ - y axis speed
 # * +visible+ - Defines if the image is visible
 # * +hit+ - Keep track of the hits
+# * +playing+ - Boolean that defines if the game is running
 class WhackARuby < Gosu::Window
 
   ##
@@ -34,6 +35,7 @@ class WhackARuby < Gosu::Window
 
     @font = Gosu::Font.new(self, "system", 30)
     @score = 0
+    @playing = true
 
   end
 
@@ -41,7 +43,7 @@ class WhackARuby < Gosu::Window
   # @param id [Fixnum] the button's platform defined id.
   # @see Gosu.button_down?
   def button_down(id)
-    if (id == Gosu::MsLeft)
+    if (@playing and id == Gosu::MsLeft)
       if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
         @hit = 1
         @score += 5
@@ -58,25 +60,30 @@ class WhackARuby < Gosu::Window
   #
   # @return [void]
   def update
-    @visible -= 1
-    if @visible < -10 and rand < 0.01
-      @visible = 300
+    if @playing
+      @x += @velocity_x
+      @y += @velocity_y
+      @visible -= 1
+
+      if @visible < -10 and rand < 0.01
+        @visible = 300
+      end
+
+      if @x + @width/2 > 800 or @x - @width/2 < 0
+        @velocity_x *= -1
+      end
+
+      if @y + @height/2 > 600 or @y - @height/2 < 0
+        @velocity_y *= -1
+      end
+
+      # Time limit
+      @time_left = (100 - (Gosu.milliseconds/1000)).to_s
+
+      if @time_left == 0
+        @playing = false
+      end
     end
-
-    @x += @velocity_x
-    @y += @velocity_y
-
-    if @x + @width/2 > 800 or @x - @width/2 < 0
-      @velocity_x *= -1
-    end
-
-    if @y + @height/2 > 600 or @y - @height/2 < 0
-      @velocity_y *= -1
-    end
-
-    # Time limit
-    @time_left = (100 - (Gosu.milliseconds/1000)).to_s
-
   end
 
   ##
@@ -85,6 +92,11 @@ class WhackARuby < Gosu::Window
   #
   # @return [void]
   def draw
+
+    if not @playing
+      @font.draw("Game Over", 300, 300, 3)
+      @visible = 20
+    end
 
     @hammer_image.draw(mouse_x-40, mouse_y-10, 1)
 
