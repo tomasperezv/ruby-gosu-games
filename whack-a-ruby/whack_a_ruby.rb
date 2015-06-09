@@ -74,6 +74,9 @@ class WhackARuby < Gosu::Window
       @velocity_y *= -1
     end
 
+    # Time limit
+    @time_left = (100 - (Gosu.milliseconds/1000)).to_s
+
   end
 
   ##
@@ -99,7 +102,9 @@ class WhackARuby < Gosu::Window
     @hit = 0
 
     draw_quad(0, 0, c, 800, 0, c, 800, 600, c, 0, 600, c)
+
     @font.draw(@score.to_s, 700, 20, 2)
+    @font.draw(@time_left, 20, 20, 2)
 
   end
 
