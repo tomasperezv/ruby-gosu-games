@@ -18,6 +18,8 @@ class WhackARuby < Gosu::Window
   ##
   # @return [void]
   def initialize
+    $gosu_gl_blocks = nil
+
     super 800,600,false
     self.caption = "Whack the Ruby!"
 
