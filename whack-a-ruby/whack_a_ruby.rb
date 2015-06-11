@@ -41,6 +41,7 @@ class WhackARuby < Gosu::Window
     @font = Gosu::Font.new(self, "system", 30)
     @score = 0
     @playing = true
+    @start_time = 0
 
   end
 
