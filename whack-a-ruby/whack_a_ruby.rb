@@ -48,13 +48,22 @@ class WhackARuby < Gosu::Window
   # @param id [Fixnum] the button's platform defined id.
   # @see Gosu.button_down?
   def button_down(id)
-    if (@playing and id == Gosu::MsLeft)
-      if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
-        @hit = 1
-        @score += 5
-      else
-        @hit = -1
-        @score -= 1
+    if @playing
+      if (id == Gosu::MsLeft)
+        if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 and @visible >= 0
+          @hit = 1
+          @score += 5
+        else
+          @hit = -1
+          @score -= 1
+        end
+      end
+    else
+      if (id == Gosu::KbSpace)
+        @playing = true
+        @visible = -10
+        @start_time = Gosu.milliseconds
+        @score = 0
       end
     end
   end
@@ -83,9 +92,8 @@ class WhackARuby < Gosu::Window
       end
 
       # Time limit
-      @time_left = (100 - (Gosu.milliseconds/1000)).to_s
-
-      if @time_left == 0
+      @time_left = (100 - (Gosu.milliseconds-@start_time)).to_s
+      if (Gosu.milliseconds-@start_time) > 100000
         @playing = false
       end
     end
@@ -104,6 +112,7 @@ class WhackARuby < Gosu::Window
 
     if not @playing
       @font.draw("Game Over", 300, 300, 3)
+      @font.draw("Press the Space Bar to Play Again", 175, 350, 3)
       @visible = 20
     end
 
