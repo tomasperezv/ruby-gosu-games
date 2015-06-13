@@ -4,8 +4,19 @@
 # contains the game.
 #
 class SectorFive < Gosu::Window
+
+  ##
+  # @return [void]
   def initialize
     super 800, 600, false
     self.caption = "Sector Five"
+    @player = Player.new(self)
   end
+
+  ##
+  # @return [void]
+  def draw
+    @player.draw
+  end
+
 end
