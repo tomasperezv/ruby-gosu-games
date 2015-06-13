@@ -19,4 +19,17 @@ class Player
   def draw
     @image.draw_rot(@x, @y, 1, @angle)
   end
+
+  ##
+  # @return [void]
+  def turn_right
+    @angle += 3
+  end
+
+  ##
+  # @return [void]
+  def turn_left
+    @angle -= 3
+  end
+
 end

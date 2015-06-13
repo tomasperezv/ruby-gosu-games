@@ -19,4 +19,18 @@ class SectorFive < Gosu::Window
     @player.draw
   end
 
+  ##
+  # @return [void]
+  def update
+
+    if button_down?(Gosu::KbLeft)
+      @player.turn_left
+    end
+
+    if button_down?(Gosu::KbRight)
+      @player.turn_right
+    end
+
+  end
+
 end
