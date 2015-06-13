@@ -31,6 +31,12 @@ class SectorFive < Gosu::Window
       @player.turn_right
     end
 
+    if button_down?(Gosu::KbUp)
+      @player.accelerate
+    end
+
+    @player.move
+
   end
 
 end
