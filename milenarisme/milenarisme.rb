@@ -35,6 +35,10 @@ class Milenarisme < Gosu::Window
       @arrabal.accelerate
     end
 
+    if button_down?(Gosu::KbDown)
+      @arrabal.slow_down
+    end
+
     @arrabal.move
 
   end

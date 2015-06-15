@@ -8,8 +8,8 @@ class Arrabal
   # @param window [Window]
   # @return [void]
   def initialize(window)
-    @x = 200
-    @y = 200
+    @x = 88
+    @y = 108
     @velocity_x = 0
     @velocity_y = 0
     @angle = 0
@@ -19,6 +19,15 @@ class Arrabal
   ##
   # @return [void]
   def draw
+
+    if @x > 800 or @x < 0
+      @velocity_x = @velocity_x*-2
+    end
+
+    if @y > 600 or @y < 0
+      @velocity_y = @velocity_y*-2
+    end
+
     @image.draw_rot(@x, @y, 1, @angle)
   end
 
@@ -41,6 +50,15 @@ class Arrabal
     @velocity_y += Gosu.offset_y(@angle, 2)
   end
 
+  ##
+  # @return [void]
+  def slow_down
+    @velocity_x -= Gosu.offset_x(@angle, 2)
+    @velocity_y -= Gosu.offset_y(@angle, 2)
+  end
+
+  ##
+  # @return [void]
   def move
     @x += @velocity_x
     @y += @velocity_y
