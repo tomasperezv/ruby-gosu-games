@@ -19,6 +19,8 @@ class Player
     @velocity_y = 0
     @angle = 0
     @image = Gosu::Image.new(window, './resources/images/ship.png', false)
+    @radius = 20
+    @window = window
   end
 
   ##
@@ -52,6 +54,21 @@ class Player
     # Slow it down like a sort of friction
     @velocity_x *= FRICTION
     @velocity_y *= FRICTION
+
+    if @x > @window.width - @radius
+      @vx = 0
+      @x = @window.width - @radius
+    end
+
+    if @x < @radius
+      @vx = 0
+      @x = @radius
+    end
+
+    if @y > @window.height - @radius
+      @vy = 0
+      @y = @window.height - @radius
+    end
   end
 
 end
